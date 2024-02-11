@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>My Details</title>
+</head>
+
+<body>
+  <h1>Resume</h1>
+    <h3>Name: #(name)</h3>
+    <h3>Occupation: #(occupation)</h3>
+    <h3>Introduction:</h3><p style="color:Tomato;" >I am a IOS Developer with over 8 years of experience . My idea of profession is to work for my passion. And i have a passion for developing software that makes any individual's life more convenient. I was taught coding during my B.Tech , and I feel lucky that today, I get to use those skills to solve real world problems.</p>
+</body>
+</html>
