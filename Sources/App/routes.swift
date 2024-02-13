@@ -13,6 +13,11 @@ func routes(_ app: Application) throws {
     app.get("hello") { req async -> String in
         "Hello, world!"
     }
+    
+    app.get("image") { req in
+        let path = req.application.directory.workingDirectory + "Resources/Images/" + "nature.jpeg"
+        return req.fileio.streamFile(at: path)
+    }
 
     try app.register(collection: TodoController())
 }
