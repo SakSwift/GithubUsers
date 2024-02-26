@@ -18,6 +18,17 @@ func routes(_ app: Application) throws {
         let path = req.application.directory.workingDirectory + "Resources/Images/" + "nature.jpeg"
         return req.fileio.streamFile(at: path)
     }
+    
+    app.get("images", ":id") { req in
+        guard var imageName = req.parameters.get("id") else {
+            throw Abort(.custom(code: 500, reasonPhrase: "No such image found!"))
+        }
+        imageName += ".jpeg"
+        let path = req.application.directory.workingDirectory + "Resources/Images/" + imageName
+        return req.fileio.streamFile(at: path)
+    }
 
     try app.register(collection: TodoController())
 }
+
+
