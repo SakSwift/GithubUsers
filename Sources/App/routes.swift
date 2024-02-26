@@ -19,6 +19,13 @@ func routes(_ app: Application) throws {
         return req.fileio.streamFile(at: path)
     }
     
+    app.get("users") { req -> Response in
+        let path = req.application.directory.workingDirectory + "Resources/Jsons/" + "Users.json"
+        let data = try Data(contentsOf: URL(fileURLWithPath: path))
+        let headers = HTTPHeaders()
+        return Response(status: .ok, headers: headers, body: .init(data: data))
+    }
+    
     app.get("images", ":id") { req in
         guard var imageName = req.parameters.get("id") else {
             throw Abort(.custom(code: 500, reasonPhrase: "No such image found!"))
