@@ -32,7 +32,12 @@ func routes(_ app: Application) throws {
         }
         imageName += ".jpeg"
         let path = req.application.directory.workingDirectory + "Resources/Images/" + imageName
-        return req.fileio.streamFile(at: path)
+        let response = req.fileio.streamFile(at: path)
+        
+        guard response.status != .internalServerError else {
+            return req.fileio.streamFile(at: path.replacingOccurrences(of: ".jpeg", with: ".png"))
+        }
+        return response
     }
 
     try app.register(collection: TodoController())
